@@ -1,11 +1,12 @@
 select
 
-sum(invoice.Total),
+sum(invoice.Total) as totalSales,
 Employee.FirstName || " " || Employee.LastName as "EmpName"
 
-from Invoice
+from Employee
 
-join Employee on Customer.SupportRepId = employee.EmployeeId
-join customer on invoice.CustomerId = customer.CustomerId
+left join Customer on Customer.SupportRepId = employee.EmployeeId
+left join invoice on invoice.CustomerId = customer.CustomerId
 
 group by EmpName
+order by totalSales
