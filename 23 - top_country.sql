@@ -1,3 +1,10 @@
+select 
+
+max(sumTotal)
+
+from(
+
+
 select
 
 BillingCountry,
@@ -9,4 +16,5 @@ join InvoiceLine on invoice.InvoiceId = InvoiceLine.InvoiceId
 
 group by BillingCountry
 order by sumTotal desc 
-limit 1
+
+)

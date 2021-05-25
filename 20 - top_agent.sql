@@ -1,7 +1,7 @@
 select
 
-max(invoice.Total),
-Employee.FirstName || " " || Employee.LastName as "EmpName"
+    max(invoice.Total),
+    Employee.FirstName || " " || Employee.LastName as "EmpName"
 
 from Invoice
 

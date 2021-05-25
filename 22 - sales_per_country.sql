@@ -1,10 +1,13 @@
 select
 
-BillingCountry,
-sum(total)
+    BillingCountry,
+    sum(total)
 
-from Invoice
+from
+    Invoice
 
-join InvoiceLine on invoice.InvoiceId = InvoiceLine.InvoiceId
+join InvoiceLine
+    on invoice.InvoiceId = InvoiceLine.InvoiceId
 
-group by BillingCountry
+group by
+    BillingCountry

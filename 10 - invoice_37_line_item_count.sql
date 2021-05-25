@@ -1,3 +1,6 @@
-select count(*)
-from InvoiceLine
-where invoiceId=37
+select
+    count(*)
+from
+    InvoiceLine
+where
+    invoiceId=37

@@ -1,7 +1,10 @@
 select
-count(*)
-from invoice
+    count(*)
+
+from
+    invoice
+
 where
-strftime("%Y", InvoiceDate) = "2009"
+    strftime("%Y", InvoiceDate) = "2009"
 OR
-strftime("%Y", InvoiceDate) = "2011"
+    strftime("%Y", InvoiceDate) = "2011"

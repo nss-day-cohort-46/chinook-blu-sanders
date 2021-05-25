@@ -1,2 +1,10 @@
-select BillingCountry, count(*) from invoice
-GROUP BY BillingCountry
+select
+
+	BillingCountry,
+	count(*)
+
+from
+	invoice
+
+GROUP BY
+	BillingCountry

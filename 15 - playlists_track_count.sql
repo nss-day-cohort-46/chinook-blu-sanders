@@ -1,6 +1,11 @@
 select
-PlaylistTrack.playlistId,
-Playlist.name,
-count(*) as "# of Tracks" from PlaylistTrack
-join Playlist on Playlist.PlaylistId = PlaylistTrack.PlaylistId
+    Playlist.name as "Play List",
+    count(*) as "# of Tracks"
+
+from Playlist
+
+join PlaylistTrack
+    on Playlist.PlaylistId = PlaylistTrack.PlaylistId
+
 group by PlaylistTrack.PlaylistId
+order by Playlist.name
