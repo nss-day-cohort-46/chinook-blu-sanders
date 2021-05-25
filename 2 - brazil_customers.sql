@@ -1,4 +1,6 @@
 select
-*
-from customer
-where country is "Brazil"
+    *
+from
+    customer
+where
+    country = "Brazil"

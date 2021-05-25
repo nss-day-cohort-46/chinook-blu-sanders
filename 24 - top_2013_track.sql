@@ -1,14 +1,22 @@
--- top_2013_track.sql: Provide a query that shows the most purchased track of 2013.
+select trackName, max(totalTracks)
 
+from(
 
-select
+    select
 
-track.Name as trackName,
-count(invoice.invoiceId) as totalTracks
+    track.Name as trackName,
+    count(invoiceLine.InvoiceLineId) as totalTracks
 
-from Invoice
+    from InvoiceLine
 
-join InvoiceLine on invoice.InvoiceId = InvoiceLine.InvoiceId
-join track on track.TrackId = InvoiceLine.TrackId
+    join Invoice on
+        invoice.InvoiceId = InvoiceLine.InvoiceId
+    join track on
+        track.TrackId = InvoiceLine.TrackId
 
-where InvoiceDate like "%2013%"
+    where InvoiceDate like "%2013%"
+
+    group by track.TrackId
+	order by track.name
+)
+

@@ -1,6 +1,10 @@
 select
-CustomerId,
-FirstName || " " || LastName as FullName,
-Country
+
+    CustomerId,
+    FirstName || " " || LastName as FullName,
+    Country
+
 from customer
-where country is not "USA"
+
+where country != "USA"
+

@@ -1,12 +1,13 @@
--- top_5_tracks.sql: Provide a query that shows the top 5 most purchased tracks over all.select
-
 select
 
-    count(InvoiceLine.TrackId) as trackCount
+	track.Name as trackName,
+	count(*) as totalTracks
 
-FROM
-    InvoiceLine
+from InvoiceLine
 
-group by TrackId
-order by trackCount desc
+join track on track.TrackId = InvoiceLine.TrackId
+
+group by InvoiceLine.TrackId
+order by totalTracks desc
+limit 5
 

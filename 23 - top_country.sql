@@ -1,20 +1,20 @@
 select 
 
-max(sumTotal)
+    max(sumTotal)
 
 from(
 
 
-select
+    select
 
-BillingCountry,
-sum(total) as sumTotal
+    BillingCountry,
+    sum(total) as sumTotal
 
-from Invoice
+    from Invoice
 
-join InvoiceLine on invoice.InvoiceId = InvoiceLine.InvoiceId
+    join InvoiceLine on invoice.InvoiceId = InvoiceLine.InvoiceId
 
-group by BillingCountry
-order by sumTotal desc 
+    group by BillingCountry
+    order by sumTotal desc 
 
 )

@@ -11,5 +11,5 @@ left join Customer on
 left join invoice on
     invoice.CustomerId = customer.CustomerId
 
-group by EmpName
+group by Employee.EmployeeId
 order by totalSales

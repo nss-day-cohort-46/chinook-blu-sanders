@@ -1,10 +1,10 @@
 select
 
     invoice.InvoiceId,
+    customer.FirstName || " " || customer.LastName as "CustName",
     invoice.Total,
     Invoice.BillingCountry,
-    Employee.FirstName || " " || Employee.LastName as "Emp Name",
-    customer.FirstName || " " || customer.LastName as "Cust Name"
+    Employee.FirstName || " " || Employee.LastName as "EmpName"
 
 from Invoice
 
@@ -13,4 +13,6 @@ join Employee on
 
 join customer on
     invoice.CustomerId = customer.CustomerId
+
+order by CustName
 

@@ -1,5 +1,5 @@
 select *
-from Employee
-where
-title like "%sales%agent%"
+from
+    Employee
+where Faxtitle like "%sales%agent%"
 
