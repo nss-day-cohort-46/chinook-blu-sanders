@@ -1,13 +1,24 @@
 select
 
-    max(invoice.Total),
-    Employee.FirstName || " " || Employee.LastName as "EmpName"
+    EmpName,
+    max(totalSales)
 
-from
-    Invoice
+from 
 
-join Employee on
-    Customer.SupportRepId = employee.EmployeeId
+    (
 
-join customer on
-    invoice.CustomerId = customer.CustomerId
+        select
+
+        sum(invoice.Total) as totalSales,
+        Employee.FirstName || " " || Employee.LastName as "EmpName"
+
+        from Employee
+
+        left join Customer on Customer.SupportRepId = employee.EmployeeId
+        left join invoice on invoice.CustomerId = customer.CustomerId
+
+        group by employee.EmployeeId 
+        order by totalSales desc
+
+
+    )
