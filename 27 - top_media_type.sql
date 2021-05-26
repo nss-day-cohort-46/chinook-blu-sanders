@@ -2,20 +2,40 @@
 
 select typeName, max(totalTracks) 
 
-FROM (
+FROM
 
-select
+(
 
-	MediaType.name as typeName,
-	count(*) as totalTracks
+	select
 
-from invoiceLine
+		MediaType.name as typeName,
+		count(*) as totalTracks
 
-join track on track.TrackId = InvoiceLine.TrackId 
-join MediaType on MediaType.MediaTypeId = track.MediaTypeId
+	from invoiceLine
 
-group by MediaType.Name
+	join track on track.TrackId = InvoiceLine.TrackId 
+	join MediaType on MediaType.MediaTypeId = track.MediaTypeId
 
-order by totalTracks DESC
+	group by MediaType.Name
+
+	order by totalTracks DESC
 
 )
+
+
+-- With TrackCounts AS (
+--     Select COUNT(InvoiceLineId) TotalSales,
+--         TrackId
+--     FROM InvoiceLine
+--     GROUP BY TrackId
+-- ),
+-- MediaTypeSales AS (
+--     SELECT SUM(tc.TotalSales) TotalSales,
+--         mt.Name Name
+--     FROM TrackCounts tc
+--         JOIN Track t on t.TrackId = tc.TrackId
+--         JOIN MediaType mt ON mt.MediaTypeid = t.MediaTypeId
+--     GROUP BY mt.Name
+-- )
+-- SELECT MAX(TotalSales) TotalSales, Name
+-- FROM MediaTypeSales

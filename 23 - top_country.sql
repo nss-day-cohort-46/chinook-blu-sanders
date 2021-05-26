@@ -1,20 +1,27 @@
-select 
+SELECT
 
-    max(sumTotal)
+BillingCountry, '$'|| max(TotalSales)
 
-from(
+FROM
 
-
-    select
-
-    BillingCountry,
-    sum(total) as sumTotal
-
-    from Invoice
-
-    join InvoiceLine on invoice.InvoiceId = InvoiceLine.InvoiceId
-
-    group by BillingCountry
-    order by sumTotal desc 
-
+(
+	SELECT BillingCountry, SUM(Total) AS TotalSales
+	FROM Invoice
+	JOIN Customer ON Invoice.CustomerId = Customer.CustomerId
+	GROUP BY BillingCountry
+	ORDER BY TotalSales DESC
 )
+
+
+
+
+
+-- WITH TotalSales AS (
+--     SELECT SUM(Total) Total,
+--         BillingCountry Country
+--     FROM Invoice
+--     GROUP BY BillingCountry
+-- )
+-- SELECT '$' || MAX(Total) "Grand Total",
+--     Country
+-- FROM TotalSales

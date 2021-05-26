@@ -1,14 +1,11 @@
-select
+SELECT
 
-    employee.FirstName,
-    Employee.LastName,
-    count(customer.CustomerId) as CustCount
+e.FirstName || ' ' || e.LastName as FullName,
 
-from
-    Employee
+COUNT(c.supportRepId) as customerCount
 
-left join customer on
-    Customer.SupportRepId = employee.EmployeeId
+FROM Employee e 
 
-group by
-    EmployeeId
+INNER JOIN Customer c ON c.supportRepId = e.employeeId
+
+GROUP BY e.EmployeeId

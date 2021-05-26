@@ -1,25 +1,16 @@
 select
+    
+	Agent,
+    Max(TotalSales) as MaxSales
 
-    EmpName,
-    max(totalSales)
+FROM
+(
+    SELECT
+        e.FirstName || " " || e.LastName as Agent,
+        sum(i.total) as TotalSales
 
-from 
+FROM employee e
 
-    (
-
-        select
-
-        sum(invoice.Total) as totalSales,
-        Employee.FirstName || " " || Employee.LastName as "EmpName"
-
-        from Employee
-
-        left join Customer on Customer.SupportRepId = employee.EmployeeId
-        left join invoice on invoice.CustomerId = customer.CustomerId
-
-        group by employee.EmployeeId 
-        order by totalSales desc
-
-
-    )
-
+JOIN Customer c on c.supportrepid = e.EmployeeId
+JOIN invoice i on i.customerid = c.customerid
+)

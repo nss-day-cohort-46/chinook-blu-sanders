@@ -1,7 +1,7 @@
 select
 
-    sum(invoice.Total) as totalSales,
-    Employee.FirstName || " " || Employee.LastName as "EmpName"
+    Employee.FirstName || " " || Employee.LastName as "EmpName",
+    sum(invoice.Total) as totalSales
 
 from Employee
 
